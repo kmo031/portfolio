@@ -1,0 +1,13 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+*{
+	font-family: 'Nanum Gothic';
+}
+
+
+.jumbotron {/* 배너 배경이미지, 색상 */
+	background-image: url('/resources/images/banner1.svg');
+	background-size: cover; text-shadow : black 0.2em 0.2em 0.2em;
+	color: white;
+	text-shadow: black 0.2em 0.2em 0.2em;
+}
