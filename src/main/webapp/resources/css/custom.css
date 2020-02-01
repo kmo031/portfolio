@@ -1,13 +1,71 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-*{
+* {
 	font-family: 'Nanum Gothic';
 }
 
 
+
 .jumbotron {/* 배너 배경이미지, 색상 */
-	background-image: url('/resources/images/banner1.svg');
+	background-image: url('/resources/images/banner.jpg');
 	background-size: cover; text-shadow : black 0.2em 0.2em 0.2em;
 	color: white;
 	text-shadow: black 0.2em 0.2em 0.2em;
+	margin-top: 10px;
 }
+
+body, th, td, input, select, textarea, button{ /* 폰트사이즈  */
+	font-size: 13px;
+}
+
+
+
+
+/* 네비게이션 영역  */
+.navbar{ /* 배경 색상  */
+	background-color: #000000;
+	border-color: #000000;
+	
+}
+
+.navbar .navbar-brand{/* 네비게이션 제목 색상  */
+	
+	color: #ffffff;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus{ /* 네비게이션 제목에 마우스를 올렸을때 */
+	color:#bbbbbb;
+}
+
+.navbar .navbar-toggler{ /* 토글 테두리   */
+	color: rgba(255, 255, 255, .5);
+	border-color: rgba(255, 255, 255, .1)
+}
+.navbar .navbar-toggler-icon{ /* 토글 아이콘 색상  */
+	background-image:
+			url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+	}
+
+.nav-item > a{/* 네비게이션 아이템 색상  */
+	color: #bbbbbb;
+	text-decoration: none;	
+}
+.nav-item > a:hover {/* 네비게이션 아이템에 마우스 가져갔을때 색상  */
+	color: #ffffff;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* 카드 영역  */
+.card .card-body .table,
+.card .card-header{ /* 카드안의 테이블이 화면크기  */
+	width: 100%;
+	table-layout: fixed;
+}
+
+.card .card-header .card-title{ /* 카드 제목 하단 마진설정  */
+	margin-bottom: 0rem;
+}
+
+
