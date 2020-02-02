@@ -1,44 +1,52 @@
-<footer id="footer">
-        <div class="content-container">
-            <h2 id="footer-logo"><img src="/resources/images/logo-footer.png" alt="회사정보"></h2>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-            <div id="company-info">
-                <dl>
-                    <dt>주소:</dt>
-                    <dd>서울특별시 </dd>
-                    <dt>관리자메일:</dt>
-                    <dd>admin@newlecture.com</dd>
-                </dl>
-                <dl>
-                    <dt>사업자 등록번호:</dt>
-                    <dd>111-11-11111</dd>
-                    <dt>통신 판매업:</dt>
-                    <dd>신고제 1111 호</dd>
-                </dl>
-                <dl>
-                    <dt>상호:</dt>
-                    <dd>뉴렉처</dd>
-                    <dt>대표:</dt>
-                    <dd>홍길동</dd>
-                    <dt>전화번호:</dt>
-                    <dd>111-1111-1111</dd>
-                </dl>
-                <div id="copyright" class="margin-top">Copyright ⓒ newlecture.com 2012-2014 All Right Reserved.
-                    Contact admin@newlecture.com for more information</div>
-            </div>
-        </div>
-    </footer>
+<!-- footer 시작  -->
+<footer style="background-color: #000000; color: #ffffff">
+	<div class="container">
+		<br>
+		<div class="row">
+
+			<div class="col-sm-4">
+				<h4>대표자 소개</h4>
+				<p>저는 공부를 하고있습니다.</p>
+			</div>
+
+			<div class="col-sm-12" style="text-align: center;">
+				<h5>Copyright &copy; 2020 정상민(Sangmin Jung)</h5>
+			</div>
+		</div>
+	</div>
+</footer>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<!-- <script type="text/javascript">
+	$(function() {
+		stickyFooter();
+
+		$(window).scroll(stickyFooter).resize(stickyFooter);
+	});
+
+	function stickyFooter() {
+		document_height = $(document).height(); // 문서 전체 높이
+		document_scrollTop = $(document).scrollTop(); // 문서 전체 높이 중 스크롤 위치
+		window_height = $(window).height(); // 창 높이
+		footer_height = $("footer").height();
+
+		gap = document_height - footer_height - window_height;
+		bottom = document_scrollTop - gap;
+
+		if (document_scrollTop > gap) {
+			$("footer").css("bottom", bottom + "px");
+		} else {
+			$("footer").css("bottom", "0");
+		}
+	}
+</script> -->
 </body>
 
-</html><%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
 </html>

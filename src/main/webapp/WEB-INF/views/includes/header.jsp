@@ -1,81 +1,68 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>포트폴리오 만들기</title>
-    <meta charset="utf-8">
-    <title>공지사항목록</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1">
+<title>코딩스터디</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/css/custom.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
 
-    <link href="/resources/css/layout.css" type="text/css" rel="stylesheet" />
-    <link href="/resources/css/index.css" type="text/css" rel="stylesheet" />
 </head>
-
 <body>
-    <!-- header 부분 -->
 
-    <header id="header">
-        
-        <div class="content-container">
-            <!-- ---------------------------<header>--------------------------------------- -->
+	<!-- nav시작  -->
+	<nav class="navbar navbar-expand-md">
+		<div class="container-fluid">
 
-            <h1 id="logo">
-                <a href="/"> 
-                    <img src="/resources/images/logo.png" alt="스프링 포트폴리오 로고" />
+			<!-- Brand -->
+			<a class="navbar-brand" href="/">코딩스터디</a>
+			<!-- Toggler/collapsibe Button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-                </a>
-            </h1>
+			<!-- Navbar links -->
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav ">
+					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">사용 툴 및
+							기술</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">채팅</a></li>
+					<!-- Dropdown -->
+					<!-- <li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbardrop"
+						data-toggle="dropdown"> Dropdown link </a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Link 1</a> <a
+								class="dropdown-item" href="#">Link 2</a> <a
+								class="dropdown-item" href="#">Link 3</a>
+						</div></li> -->
 
-            <section>
-                <h1 class="hidden">헤더</h1>
 
-                <nav id="main-menu">
-                    <h1>메인메뉴</h1>
-                    <ul>
-                        <li><a href="/board">게시판</a></li>
+				</ul>
 
-                        <li><a href="/course">메뉴2</a></li> 
-                        <li><a href="/answeris/index">메뉴3</a></li>
-                    </ul>
-                </nav>
-
-                <div class="sub-menu">
-
-				<!-- 검색 추가 예정 -->
-                  <!--   <section id="search-form">
-                        <h1>강좌검색 폼</h1>
-                        <form action="/course">
-                            <fieldset>
-                                <legend>과정검색필드</legend>
-                                <label>과정검색</label>
-                                <input type="text" name="q" value="" />
-                                <input type="submit" value="검색" />
-                            </fieldset>
-                        </form>
-                    </section> -->
-
-                    <nav id="acount-menu">
-                        <h1 class="hidden">회원메뉴</h1>
-                        <ul>
-                            <li><a href="/">HOME</a></li>
-                            <li><a href="/member/login">로그인</a></li>
-                            <li><a href="/member/agree">회원가입</a></li>
-                        </ul>
-                    </nav>
-
-                    <nav id="member-menu" class="linear-layout">
-                        <h1 class="hidden">고객메뉴</h1>
-                        <ul class="linear-layout">
-                            <li><a href="/member/home"><img src="/resources/images/txt-mypage.png" alt="마이페이지" /></a></li>
-                            <li><a href="/notice/list"><img src="/resources/images/txt-customer.png" alt="고객센터" /></a></li>
-                        </ul>
-                    </nav>
-
-                </div>
-            </section>
-
-        </div>
-        
-    </header>
+				<!-- 로그인 드롭다운  -->
+				<ul class="nav navbar-nav ml-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+							로그인 </a>
+						<div class="dropdown-menu dropdown-menu-right ">
+							<a class="dropdown-item" href="/customLogin">로그인</a> <a
+								class="dropdown-item" href="#">회원가입</a>
+						</div></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
