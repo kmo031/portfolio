@@ -3,8 +3,18 @@
 * {
 	font-family: 'Nanum Gothic';
 }
+body,html{ /* 화면이 줄어들었을경우에도 높이 유지  */
+	height: 100%;
+}
+.container{ /* 화면이 줄어들었을경우에도 높이 유지  */
+	min-height: 100%;
+}
 
-
+header {  /* navbar 고정  */
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+}
 
 .jumbotron {/* 배너 배경이미지, 색상 */
 	background-image: url('/resources/images/banner.jpg');
@@ -19,7 +29,6 @@ body, th, td, input, select, textarea, button{ /* 폰트사이즈  */
 }
 
  footer{
-	position:fixed;
     bottom:0;
     width:100%;   
  }

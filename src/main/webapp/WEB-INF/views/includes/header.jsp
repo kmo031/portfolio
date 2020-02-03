@@ -21,27 +21,29 @@
 <body>
 
 	<!-- nav시작  -->
-	<nav class="navbar navbar-expand-md">
-		<div class="container-fluid">
 
-			<!-- Brand -->
-			<a class="navbar-brand" href="/">코딩스터디</a>
-			<!-- Toggler/collapsibe Button -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#collapsibleNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	<header>
+		<nav class="navbar navbar-expand-md fixed-top">
+			<div class="container-fluid">
 
-			<!-- Navbar links -->
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<ul class="navbar-nav ">
-					<li class="nav-item"><a class="nav-link" href="/board/notice">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="/board/normal">게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="/board/skill">사용 툴 및
-							기술</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">채팅</a></li>
-					<!-- Dropdown -->
-					<!-- <li class="nav-item dropdown"><a
+				<!-- Brand -->
+				<a class="navbar-brand" href="/">코딩스터디</a>
+				<!-- Toggler/collapsibe Button -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#collapsibleNavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar links -->
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+					<ul class="navbar-nav ">
+						<li class="nav-item"><a class="nav-link" href="/board/notice">공지사항</a></li>
+						<li class="nav-item"><a class="nav-link" href="/board/normal">게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="/board/skill">사용
+								툴 및 기술</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">채팅</a></li>
+						<!-- Dropdown -->
+						<!-- <li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbardrop"
 						data-toggle="dropdown"> Dropdown link </a>
 						<div class="dropdown-menu">
@@ -51,18 +53,19 @@
 						</div></li> -->
 
 
-				</ul>
+					</ul>
 
-				<!-- 로그인 드롭다운  -->
-				<ul class="nav navbar-nav ml-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-							로그인 </a>
-						<div class="dropdown-menu dropdown-menu-right ">
-							<a class="dropdown-item" href="/customLogin">로그인</a> <a
-								class="dropdown-item" href="#">회원가입</a>
-						</div></li>
-				</ul>
+					<!-- 로그인 드롭다운  -->
+					<ul class="nav navbar-nav ml-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+								로그인 </a>
+							<div class="dropdown-menu dropdown-menu-right ">
+								<a class="dropdown-item" href="/customLogin">로그인</a> <a
+									class="dropdown-item" href="#">회원가입</a>
+							</div></li>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
+	</header>

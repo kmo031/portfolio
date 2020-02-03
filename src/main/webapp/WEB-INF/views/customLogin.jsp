@@ -2,22 +2,39 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="./includes/header.jsp"%>
-
 <style type="text/css">
-html,body{
+
+/* html,body{
 background-image: url('/resources/images/banner.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 max-width: 100%; 
 height: 100%;
-
+max-height: 100%;
 
 }
 
 .container{
 height: 80%; 
 align-content: center;
+} */ 
+
+html,body{
+
+
 }
+
+.back-image{
+align-content: center;
+background-image: url('/resources/images/banner.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+max-width: 100%; 
+height: 100%;
+max-height: 100%;
+} 
+
+
 
 .card{
 height: 370px;
@@ -102,7 +119,7 @@ margin-left: 4px;
 </h2>
 <h3>${logout }</h3> --%>
 
-<div class="container">
+<div class="container back-image">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
