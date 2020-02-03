@@ -6,14 +6,14 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class NoticeDTO {
+public class BoardDTO {
 
 	private int id;
 	private String title;
+	private String type;
 	private String writer_Id;
 	private String content;
 	private Date regdate;
 	private int hit;
-	private File files;
 	
 }

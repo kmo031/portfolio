@@ -35,9 +35,9 @@
 			<!-- Navbar links -->
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav ">
-					<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">사용 툴 및
+					<li class="nav-item"><a class="nav-link" href="/board/notice">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board/normal">게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board/skill">사용 툴 및
 							기술</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">채팅</a></li>
 					<!-- Dropdown -->

@@ -15,7 +15,7 @@
 }
 
 body, th, td, input, select, textarea, button{ /* 폰트사이즈  */
-	font-size: 13px;
+	font-size: 15px;
 }
 
  footer{
@@ -64,6 +64,9 @@ body, th, td, input, select, textarea, button{ /* 폰트사이즈  */
 
 
 /* 카드 영역  */
+.card{
+	margin-top: 1rem;
+}
 .card .card-body .table,
 .card .card-header{ /* 카드안의 테이블이 화면크기  */
 	width: 100%;

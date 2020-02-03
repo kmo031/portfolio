@@ -2,7 +2,7 @@ package org.sangmin.controller;
 
 import java.util.Locale;
 
-import org.sangmin.mapper.NoticeMapper;
+import org.sangmin.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,24 +23,17 @@ public class HomeController {
 	
 	
 	@Setter(onMethod_ = {@Autowired})
-	private NoticeMapper notice;
+	private BoardMapper board;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 	
-		model.addAttribute("List", notice.getList());
+		model.addAttribute("List", board.getBoardList());
 		
 		return "home";
 	}
 	
 	
-	@RequestMapping(value = "/ho", method = RequestMethod.GET)
-	public String home1(Locale locale, Model model) {
-	
-		model.addAttribute("List", notice.getList());
-		
-		return "home1";
-	}
 	
 }
