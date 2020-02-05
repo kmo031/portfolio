@@ -6,12 +6,12 @@
 
 	<!-- 게시판 목록 가져오기  -->
 	<select id="getBoardList" resultType="org.sangmin.domain.BoardDTO">
-		SELECT * FROM tbl_board WHERE type='BOARD'
+		SELECT * FROM tbl_board WHERE type='board'
 	</select>
 	
 	<!-- 공지사항 목록 가져오기 -->
 	<select id="getNoticeList" resultType="org.sangmin.domain.BoardDTO">
-		SELECT * FROM tbl_board WHERE type='NOTICE'
+		SELECT * FROM tbl_board WHERE type='notice'
 	</select>
 	<select id="read" resultType="org.sangmin.domain.BoardDTO">
 		SELECT * FROM tbl_board WHERE id = #{id}

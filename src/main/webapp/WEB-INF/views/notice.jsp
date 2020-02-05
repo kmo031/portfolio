@@ -12,7 +12,7 @@
 				<h5 class="card-title">공지사항</h5>
 			</div>
 			<div class="card-body table-responsive">
-				<table class="table table-dark table-striped table-bordered table-hover"
+				<table class="table table-dark table-striped table-hover"
 					style="text-align: center;">
 					<thead>
 						<tr>

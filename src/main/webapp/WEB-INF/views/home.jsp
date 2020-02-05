@@ -47,9 +47,9 @@
 					<h5 class="card-title">게시판</h5>
 				</div>
 				<div class="card-body">
-					<c:forEach items="${List}" var="board">
+					<c:forEach items="${Board}" var="board">
 						<ul>
-							<li><span><a href="#"><c:out
+							<li><span><a href="/board/detail?id=<c:out value='${board.id}'/>"><c:out
 											value="${board.title }" /></a></span></li>
 						</ul>
 					</c:forEach>
@@ -63,9 +63,12 @@
 					<h5 class="card-title">공지사항</h5>
 				</div>
 				<div class="card-body">
-					<ul>
-						<li>테스트</li>
-					</ul>
+					<c:forEach items="${Notice}" var="notice">
+						<ul>
+							<li><span><a href="/board/detail?id=<c:out value='${notice.id}'/>"><c:out
+											value="${notice.title }" /></a></span></li>
+						</ul>
+					</c:forEach>
 				</div>
 
 			</div>
