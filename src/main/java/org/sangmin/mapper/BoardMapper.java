@@ -11,5 +11,13 @@ public interface BoardMapper {
 	
 	public BoardDTO read(int id);     //공지사항 id에 맞는 정보 가져오기
 	
+	//public void insert(BoardDTO board); // 게시글 등록
+	
+	public void insert(BoardDTO board); //게시글 등록
+	
+	public int update(BoardDTO board); // 게시글 수정
+	
+	public int delete(int id); //게시글 삭제
+	
 
 }

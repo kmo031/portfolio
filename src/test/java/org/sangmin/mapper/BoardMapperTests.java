@@ -1,0 +1,60 @@
+package org.sangmin.mapper;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.sangmin.domain.BoardDTO;
+import org.sangmin.mapper.BoardMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class BoardMapperTests {
+
+	//Mapper 객체생성
+	@Setter(onMethod_ = {@Autowired})
+	private BoardMapper mapper;
+	
+	/*
+	 * //목록 가져오기
+	 * 
+	 * @Test public void getList() { mapper.getBoardList().forEach(List ->
+	 * log.info(List)); }
+	 */
+	
+	/*
+	 * //게시글 등록 테스트
+	 * 
+	 * @Test public void insert() { BoardDTO board = new BoardDTO();
+	 * 
+	 * board.setTitle("맵퍼인서트"); board.setContent("맵퍼 본문");
+	 * board.setWriter_Id("맵퍼아이디"); board.setType("board");
+	 * 
+	 * mapper.insert(board); }
+	 */
+	
+	/*
+	 * //게시글 삭제 테스트
+	 * 
+	 * @Test public void delete() {
+	 * 
+	 * log.info("DELETE COUNT : " + mapper.delete(61)); }
+	 */
+	//업데이트 테스트
+	@Test
+	public void update() {
+		BoardDTO board = new BoardDTO();
+		
+		board.setId(21);
+		board.setContent("맵퍼 업데이트 테스트");
+		board.setTitle("맵퍼 업데이트 테스트");
+		
+		int count = mapper.update(board);
+		log.info("UPDATE COUNT : " + count);
+	}
+}

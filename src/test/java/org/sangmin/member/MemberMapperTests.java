@@ -1,4 +1,4 @@
-package org.sangmin.persistence;
+package org.sangmin.member;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

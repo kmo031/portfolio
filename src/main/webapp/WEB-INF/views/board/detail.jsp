@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 
-<%@include file="./includes/header.jsp"%>
+<%@include file="../includes/header.jsp"%>
 
 
 <div class="container">
@@ -30,7 +30,7 @@
 						<tr height="100%">
 							<td colspan="4"><div class="detailBody">
 									<div class="detailContent">
-										<c:out value="${detail.content}" />
+										${detail.content}
 									</div>
 								</div></td>
 						</tr>
@@ -43,7 +43,7 @@
 										<a class="btn btn-dark"
 											href="/board/<c:out value="${detail.type }"/>">목록</a> <a
 											class="btn btn-dark"
-											href="/board/<c:out value="${detail.type }"/>">수정</a> <a
+											href="/board/modify?id=<c:out value="${detail.id }"/>">수정</a> <a
 											class="btn btn-dark"
 											href="/board/<c:out value="${detail.type }"/>">삭제</a>
 									</div>
@@ -65,4 +65,4 @@
 
 
 
-<%@include file="./includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp"%>

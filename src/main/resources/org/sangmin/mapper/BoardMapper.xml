@@ -4,18 +4,43 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sangmin.mapper.BoardMapper">
 
-	<!-- 게시판 목록 가져오기  -->
-	<select id="getBoardList" resultType="org.sangmin.domain.BoardDTO">
+	<!-- 게시판 목록 가져오기 -->
+	<select id="getBoardList"
+		resultType="org.sangmin.domain.BoardDTO">
 		SELECT * FROM tbl_board WHERE type='board'
 	</select>
-	
+
 	<!-- 공지사항 목록 가져오기 -->
-	<select id="getNoticeList" resultType="org.sangmin.domain.BoardDTO">
+	<select id="getNoticeList"
+		resultType="org.sangmin.domain.BoardDTO">
 		SELECT * FROM tbl_board WHERE type='notice'
 	</select>
 	<select id="read" resultType="org.sangmin.domain.BoardDTO">
-		SELECT * FROM tbl_board WHERE id = #{id}
+		SELECT * FROM tbl_board WHERE id =
+		#{id}
 	</select>
+
+	<insert id="insert">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			SELECT seq_board.nextval FROM dual
+		</selectKey>
+
+		INSERT INTO tbl_board (id, title, content,writer_id, type) VALUES
+		(#{id}, #{title}, #{content}, #{writer_Id}, #{type})
+	</insert>
+	
+	<delete id="delete">
+		DELETE tbl_board where id = #{id}
+	</delete>
+	
+	<update id="update">
+		UPDATE tbl_board
+		SET
+		title = #{title},
+		content = #{content},
+		updateDate = sysdate
+		where id = #{id}
+	</update>
 
 
 </mapper>

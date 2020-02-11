@@ -15,7 +15,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardServiceImpl implements BoardService {
 	
 	@Setter(onMethod_ = {@Autowired})
-	private BoardMapper board;
+	private BoardMapper boardMapper;
 	 
 
 	@Override
@@ -23,7 +23,7 @@ public class BoardServiceImpl implements BoardService {
 
 		log.info("게시판 가져오기 서비스 구현");
 		
-		return board.getBoardList();
+		return boardMapper.getBoardList();
 	}
 
 
@@ -32,14 +32,44 @@ public class BoardServiceImpl implements BoardService {
 
 		log.info("공지사항 가져오기 서비스 구현");
 		
-		return board.getNoticeList();
+		return boardMapper.getNoticeList();
 	}
 
 
 	@Override
 	public BoardDTO read(int id) {
-		// TODO Auto-generated method stub
-		return board.read(id);
+		
+		log.info("게시글 가져오기 서비스 구현");
+		
+		return boardMapper.read(id);
+	}
+
+
+	@Override
+	public void register(BoardDTO board) {
+		
+		log.info("게시글 작성 서비스 구현");
+		
+		boardMapper.insert(board);
+		
+	}
+
+
+	@Override
+	public boolean modify(BoardDTO board) {
+		
+		log.info("게시글 업데이트 서비스 구현");
+		
+		return boardMapper.update(board) == 1;
+	}
+
+
+	@Override
+	public boolean remove(int id) {
+
+		log.info("게시글 삭제 서비스 구현");
+		
+		return boardMapper.delete(id) == 1;
 	}
 
 }

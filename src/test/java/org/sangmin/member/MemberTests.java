@@ -1,4 +1,4 @@
-package org.sangmin.persistence;
+package org.sangmin.member;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,6 +27,7 @@ public class MemberTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
+	
 	
 	/*
 	 * //멤버 추가 테스트
@@ -58,45 +59,35 @@ public class MemberTests {
 	 * 
 	 * }
 	 */
-	//권한추가 
-	@Test
-	public void testInsertAuth() {
-		String sql = "insert into tbl_auth(userid, auth ) values (?,?)";
-		
-		for(int i=0; i < 10; i++) {
-			
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			
-			try {
-				
-				con = ds.getConnection();
-				pstmt = con.prepareStatement(sql);
-				
-			
-				
-				
-				if(i < 3) {
-					pstmt.setString(1, "user" + i);
-					pstmt.setString(2, "ROLE_USER");
-				}
-				else if(i < 5) {
-					pstmt.setString(1, "manager" + i);
-					pstmt.setString(2, "ROLE_MEMBER");
-				}
-				
-				else{
-					pstmt.setString(1, "admin" + i);
-					pstmt.setString(2, "ROLE_ADMIN");
-				}
-				pstmt.executeUpdate();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				if(pstmt != null) {try {pstmt.close();}catch (Exception e) {}}
-				if(con != null) {try {con.close();}catch (Exception e) {}}
-			}
-		}//end for
-		
-	}
+	 
+	
+	/*
+	 * //권한추가
+	 * 
+	 * @Test public void testInsertAuth() { String sql =
+	 * "insert into tbl_auth(userid, auth ) values (?,?)";
+	 * 
+	 * for(int i=0; i < 10; i++) {
+	 * 
+	 * Connection con = null; PreparedStatement pstmt = null;
+	 * 
+	 * try {
+	 * 
+	 * con = ds.getConnection(); pstmt = con.prepareStatement(sql);
+	 * 
+	 * 
+	 * 
+	 * 
+	 * if(i < 3) { pstmt.setString(1, "user" + i); pstmt.setString(2, "ROLE_USER");
+	 * } else if(i < 5) { pstmt.setString(1, "manager" + i); pstmt.setString(2,
+	 * "ROLE_MEMBER"); }
+	 * 
+	 * else{ pstmt.setString(1, "admin" + i); pstmt.setString(2, "ROLE_ADMIN"); }
+	 * pstmt.executeUpdate(); }catch (Exception e) { e.printStackTrace(); }finally {
+	 * if(pstmt != null) {try {pstmt.close();}catch (Exception e) {}} if(con !=
+	 * null) {try {con.close();}catch (Exception e) {}} } }//end for
+	 * 
+	 * }
+	 */
+	 
 }
