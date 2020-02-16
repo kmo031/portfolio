@@ -1,1 +1,5 @@
 src/main/webapp/WEB-INF/properties/jdbc.properties
+target/test-classes/properties/jdbc.properties
+target/classes/properties/jdbc.properties
+src/main/resources/properties/jdbc.properties
+src/test/resources/properties/jdbc.properties

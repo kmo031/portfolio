@@ -22,30 +22,23 @@
 <!-- 부트스트랩 JS 추가  이위치에 jquery도 추가 하고싶은데 안되는 이유 찾아봐야함 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				$('input, textarea').keyup(
+						function() {
+							if ($(this).val().length > $(this)
+									.attr('maxlength')) {
+								alert('입력 제한 길이를 초과하였습니다.');
+								$(this).val(
+										$(this).val().substr(0,
+												$(this).attr('maxlength')));
+							}
+						});
+			});
+</script>
 
-<!-- <script type="text/javascript">
-	$(function() {
-		stickyFooter();
 
-		$(window).scroll(stickyFooter).resize(stickyFooter);
-	});
-
-	function stickyFooter() {
-		document_height = $(document).height(); // 문서 전체 높이
-		document_scrollTop = $(document).scrollTop(); // 문서 전체 높이 중 스크롤 위치
-		window_height = $(window).height(); // 창 높이
-		footer_height = $("footer").height();
-
-		gap = document_height - footer_height - window_height;
-		bottom = document_scrollTop - gap;
-
-		if (document_scrollTop > gap) {
-			$("footer").css("bottom", bottom + "px");
-		} else {
-			$("footer").css("bottom", "0");
-		}
-	}
-</script> -->
 </body>
 
 

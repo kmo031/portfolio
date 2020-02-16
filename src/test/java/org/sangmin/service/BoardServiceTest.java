@@ -2,8 +2,7 @@ package org.sangmin.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sangmin.domain.BoardDTO;
-import org.sangmin.service.BoardService;
+import org.sangmin.domain.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -54,4 +53,9 @@ public class BoardServiceTest {
 	 * 
 	 * service.remove(21); }
 	 */
+	//페이징 테스트
+	@Test
+	public void pageTest() {
+		service.BoardList(new Criteria(1,10)).forEach(board -> log.info(board));
+	}
 }

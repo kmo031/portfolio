@@ -83,5 +83,15 @@ public class BoardControllerTests {
 	 * 
 	 * }
 	 */
+	
+	//페이징 테스트
+	@Test
+	public void pageTest() throws Exception{
+		
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/board")
+				.param("pageNum", "1")
+				.param("amount", "50"))
+				.andReturn().getModelAndView().getModelMap());
+	}
 
 }

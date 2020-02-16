@@ -7,19 +7,37 @@
 	<!-- 게시판 목록 가져오기 -->
 	<select id="getBoardList"
 		resultType="org.sangmin.domain.BoardDTO">
-		SELECT * FROM tbl_board WHERE type='board'
+		SELECT /*+ INDEX_DESC(tbl_board pk_board) */ rownum rn, id, title, content FROM tbl_board WHERE id > 0 AND type='board'
 	</select>
 
 	<!-- 공지사항 목록 가져오기 -->
 	<select id="getNoticeList"
 		resultType="org.sangmin.domain.BoardDTO">
-		SELECT * FROM tbl_board WHERE type='notice'
+		SELECT /*+ INDEX_DESC(tbl_board pk_board) */ rownum rn, id, title, content FROM tbl_board WHERE id > 0 AND  type='notice'
 	</select>
+	
+	<!-- 게시판 페이지  -->
+	<select id="getListWithPaging" resultType="org.sangmin.domain.BoardDTO">
+		<![CDATA[
+			SELECT id, title, content, writer_Id, regdate, updatedate,type
+			from
+			(SELECT /*+ INDEX_DESC(tbl_board pk_board) */ rownum rn, id, title, content, writer_Id,regdate, type, updatedate
+			FROM tbl_board WHERE rownum <= #{pageNum} * #{amount})
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	<!-- 게시글 전체 목록 가져오기  -->
+	<select id="getTotalCount" resultType="int">
+		SELECT count(*) FROM tbl_board WHERE id > 0 AND type='board'
+	</select>
+	
+	<!-- 게시글 상세내역 가져오기 -->
 	<select id="read" resultType="org.sangmin.domain.BoardDTO">
 		SELECT * FROM tbl_board WHERE id =
 		#{id}
 	</select>
-
+	
+	<!-- 게시글 등록  -->
 	<insert id="insert">
 		<selectKey keyProperty="id" order="BEFORE" resultType="int">
 			SELECT seq_board.nextval FROM dual
@@ -29,10 +47,12 @@
 		(#{id}, #{title}, #{content}, #{writer_Id}, #{type})
 	</insert>
 	
+	<!-- 게시글 삭제  -->
 	<delete id="delete">
 		DELETE tbl_board where id = #{id}
 	</delete>
 	
+	<!-- 게시글 업데이트  -->
 	<update id="update">
 		UPDATE tbl_board
 		SET

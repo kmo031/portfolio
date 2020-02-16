@@ -3,6 +3,7 @@ package org.sangmin.service;
 import java.util.List;
 
 import org.sangmin.domain.BoardDTO;
+import org.sangmin.domain.Criteria;
 import org.sangmin.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,16 +20,16 @@ public class BoardServiceImpl implements BoardService {
 	 
 
 	@Override
-	public List<BoardDTO> BoardList() {
+	public List<BoardDTO> BoardList(Criteria cri) {
 
 		log.info("게시판 가져오기 서비스 구현");
 		
-		return boardMapper.getBoardList();
+		return boardMapper.getListWithPaging(cri);
 	}
 
 
 	@Override
-	public List<BoardDTO> NoticeList() {
+	public List<BoardDTO> NoticeList(Criteria cri) {
 
 		log.info("공지사항 가져오기 서비스 구현");
 		
@@ -70,6 +71,13 @@ public class BoardServiceImpl implements BoardService {
 		log.info("게시글 삭제 서비스 구현");
 		
 		return boardMapper.delete(id) == 1;
+	}
+
+	//게시글 갯수 구하기
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("게시글 갯수 구하기 service 구현");
+		return boardMapper.getTotalCount(cri);
 	}
 
 }

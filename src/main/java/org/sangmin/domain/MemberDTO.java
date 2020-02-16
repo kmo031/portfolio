@@ -8,9 +8,10 @@ import lombok.Data;
 @Data
 public class MemberDTO {
 
-	private String userid;
-	private String userpw;
+	private String userId;
+	private String userPw;
 	private String userName;
+	private String phone;
 	private boolean enabled;
 	
 	private Date regDate;

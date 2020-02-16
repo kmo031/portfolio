@@ -42,12 +42,12 @@
 	<div class="container">
 		<div class="row">
 			<!-- 게시판  -->
-			<div class="card col-md-12">
+			<div class="card col-md-6" style="padding: 0px;">
 				<div class="card-header">
 					<h5 class="card-title">게시판</h5>
 				</div>
-				<div class="card-body">
-					<c:forEach items="${Board}" var="board">
+				<div class="card-body"> 
+					<c:forEach items="${Board}" var="board" begin="0" end="4">
 						<ul>
 							<li><span><a href="/board/detail?id=<c:out value='${board.id}'/>"><c:out
 											value="${board.title }" /></a></span></li>
@@ -58,7 +58,7 @@
 			<!-- 게시판 End  -->
 			<!-- 공지사항  -->
 
-			<div class="card col-md-12">
+			<div class="card col-md-6" style="padding: 0px;">
 				<div class="card-header">
 					<h5 class="card-title">공지사항</h5>
 				</div>

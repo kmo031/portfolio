@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 
-<%@include file="./includes/header.jsp"%>
+<%@include file="../includes/header.jsp"%>
 
 <div class="container">
 	<div class="row">
@@ -48,4 +48,4 @@
 
 
 
-<%@include file="./includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp"%>

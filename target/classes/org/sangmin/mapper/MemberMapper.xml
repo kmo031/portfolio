@@ -5,9 +5,9 @@
   
  <mapper namespace="org.sangmin.mapper.MemberMapper">
 <resultMap type="org.sangmin.domain.MemberDTO" id="memberMap">
-		<id property="userid" column="userid" />
-		<result property="userid" column="userid" />
-		<result property="userpw" column="userpw" />
+		<id property="userId" column="userId" />
+		<result property="userId" column="userid" />
+		<result property="userPw" column="userpw" />
 		<result property="userName" column="username" />
 		<result property="regDate" column="regdate" />
 		<collection property="authList" resultMap="authMap">
@@ -15,14 +15,34 @@
 	</resultMap>
 	
 	<resultMap type="org.sangmin.domain.AuthDTO" id="authMap">
-		<result property="userid" column="userid"/>
+		<result property="userId" column="userid"/>
 		<result property="auth" column="auth"/>
 	</resultMap>
 	
 	<select id="read" resultMap="memberMap">
 		SELECT mem.userid, userpw, username, enabled, regdate, auth FROM 
 		tbl_member mem LEFT OUTER JOIN tbl_auth auth on mem.userid = auth.userid 
-		WHERE  mem.userid= #{userid}
+		WHERE  mem.userid= #{userId}
 	</select>
+	
+	<!-- 중복 id체크  -->
+	<select id="idCheck" resultType="int">
+  		SELECT count(*) FROM tbl_member WHERE userid = #{userId}
+	</select>
+	
+	<insert id="registerUser">
+  	
+  	INSERT INTO
+  	 tbl_member(
+  	 	userid, userpw, username, phone )
+  		values (#{userId}, #{userPw}, #{userName}, #{phone})
+  
+  </insert>
+  
+  <insert id="registerAuth">
+  	INSERT INTO
+  		tbl_auth(userid, auth) values (#{userId}, 'ROLE_MEMBER')
+  		
+  </insert>
 	
 </mapper>

@@ -25,13 +25,13 @@ public class CommonController {
 	}
 	
 	//로그인 동작 관련 맵핑
-	@GetMapping("/customLogin")
+	@GetMapping("/login")
 	public void loginInput(String error, String logout, Model model) {
 		log.info("error: " + error);
 		log.info("logout: " + logout);
 		
 		if(error != null) {
-			model.addAttribute("error", "Login ErrorCheck Your Account");
+			model.addAttribute("error", "사용자 정보를 확인하세요");
 		}
 		
 		if(logout != null) {
@@ -41,13 +41,13 @@ public class CommonController {
 	}
 	
 	//로그아웃 맵핑
-	@GetMapping("/customLogout")
+	@GetMapping("/logout")
 	public void logoutGET() {
 		log.info("custom logout");
 	}
 	
 	//로그아웃 처리 맵핑
-	@PostMapping("/customLogout")
+	@PostMapping("/logout")
 	public void logoutPOST() {
 		log.info("custom logout");
 	}

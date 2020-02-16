@@ -16,12 +16,12 @@
 					<legend class="border-bottom mb-4">게시글 작성</legend>
 					<div class="form-group">
 							<label class="form-control-label">제목</label>
-							<input class="form-control form-control-lg" type="text" name="title">
+							<input class="form-control form-control-lg" type="text" name="title" required maxlength="50">
 					</div>
 					<div class="form-group">
 							<label class="form-control-label">내용</label>
 							<!-- <textarea class="form-control" rows="10" cols="50" style="background-image:url('/Blog/img/background.png');"></textarea> -->
-					 		<textarea style="width: 100%" rows="10" name="content" id="textAreaContent" cols="80"></textarea>
+					 		<textarea style="width: 100%" rows="10" name="content" id="textAreaContent" cols="80" required"></textarea>
 					</div>
 					<div class="form-group">
 							<button class="btn btn-outline-info" id="save" type="submit" >작성</button>

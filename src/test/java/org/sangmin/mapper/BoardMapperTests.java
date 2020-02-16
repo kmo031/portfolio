@@ -1,10 +1,11 @@
 package org.sangmin.mapper;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sangmin.domain.BoardDTO;
-import org.sangmin.mapper.BoardMapper;
+import org.sangmin.domain.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -46,15 +47,26 @@ public class BoardMapperTests {
 	 * log.info("DELETE COUNT : " + mapper.delete(61)); }
 	 */
 	//업데이트 테스트
+	/*
+	 * @Test public void update() { BoardDTO board = new BoardDTO();
+	 * 
+	 * board.setId(21); board.setContent("맵퍼 업데이트 테스트");
+	 * board.setTitle("맵퍼 업데이트 테스트");
+	 * 
+	 * int count = mapper.update(board); log.info("UPDATE COUNT : " + count); }
+	 */
+	
+	//페이징 테스트
 	@Test
-	public void update() {
-		BoardDTO board = new BoardDTO();
+	public void pageTest() {
+		Criteria cri = new Criteria();
 		
-		board.setId(21);
-		board.setContent("맵퍼 업데이트 테스트");
-		board.setTitle("맵퍼 업데이트 테스트");
+		cri.setPageNum(3);
+		cri.setAmount(10);
 		
-		int count = mapper.update(board);
-		log.info("UPDATE COUNT : " + count);
+		List<BoardDTO> list = mapper.getListWithPaging(cri);
+		
+		list.forEach(board -> log.info(board));
+		
 	}
 }

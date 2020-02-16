@@ -14,6 +14,7 @@ public class BoardDTO {
 	private String writer_Id;
 	private String content;
 	private Date regdate;
+	private Date updateDate;
 	private int hit;
 	
 }
