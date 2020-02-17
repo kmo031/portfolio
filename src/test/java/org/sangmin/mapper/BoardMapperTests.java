@@ -13,7 +13,8 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+"file:src/main/webapp/WEB-INF/spring/appServlet/security-context.xml"})
 @Log4j
 public class BoardMapperTests {
 
@@ -56,17 +57,31 @@ public class BoardMapperTests {
 	 * int count = mapper.update(board); log.info("UPDATE COUNT : " + count); }
 	 */
 	
-	//페이징 테스트
+	/*
+	 * //페이징 테스트
+	 * 
+	 * @Test public void pageTest() { Criteria cri = new Criteria();
+	 * 
+	 * cri.setPageNum(3); cri.setAmount(10);
+	 * 
+	 * List<BoardDTO> list = mapper.getListWithPaging(cri);
+	 * 
+	 * list.forEach(board -> log.info(board));
+	 * 
+	 * }
+	 */
+	
+	//검색 테스트
 	@Test
-	public void pageTest() {
+	public void testSearch() {
+		
 		Criteria cri = new Criteria();
 		
-		cri.setPageNum(3);
-		cri.setAmount(10);
+		cri.setKeyword("1");
+		cri.setType("TC");
 		
 		List<BoardDTO> list = mapper.getListWithPaging(cri);
 		
 		list.forEach(board -> log.info(board));
-		
 	}
 }

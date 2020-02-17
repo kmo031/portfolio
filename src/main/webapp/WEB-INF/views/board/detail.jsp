@@ -133,9 +133,10 @@
 												formObj.attr("method", "get");
 												formObj.attr("action",
 														"/board/modify");
-											} else if (operation === 'list') {//목록페이지로 이동시 원래 페이지로 이동
+											} else if (operation === 'list') {//목록페이지로 이동시 원래 페이지로 이동 파라미터 전달
 												self.location = "/board/<c:out value='${detail.type}' />?"+
-													"PageNum=<c:out value="${cri.pageNum}" />&amount=<c:out value="${cri.amount}" />";
+													"PageNum=<c:out value="${cri.pageNum}" />&amount=<c:out value="${cri.amount}" />"+
+													"&type=<c:out value="${cri.type}" />&keyword=<c:out value="${cri.keyword}" />";
 												return;
 											}
 											formObj.submit();
