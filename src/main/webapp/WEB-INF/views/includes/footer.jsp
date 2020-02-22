@@ -25,7 +25,7 @@
 <script>
 	$(document).ready(
 			function() {
-				$('input, textarea').keyup(
+				$('input').keyup(
 						function() {
 							if ($(this).val().length > $(this)
 									.attr('maxlength')) {

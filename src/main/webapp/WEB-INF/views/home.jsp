@@ -70,7 +70,6 @@
 						</ul>
 					</c:forEach>
 				</div>
-
 			</div>
 			<!-- 공지사항 End  -->
 		</div>

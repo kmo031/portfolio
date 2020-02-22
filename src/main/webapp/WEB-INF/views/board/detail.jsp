@@ -59,6 +59,43 @@
 			</div>
 		</div>
 		<!-- 게시판 End  -->
+		<!-- 댓글  -->
+		<div class="card col-md-12">
+			<div class="card-header">댓글</div>
+			<div class="card-body">
+				<ul class="chat list-group">
+					<li class="left clearfix" data-rno='12'>
+						<div>
+							<p>입력된내용이없습니다.</p>
+						</div>
+					</li>
+				</ul>
+				<div class="card-footer ">
+					<div class="cmtWriteForm">
+						<table class="replyTable" cellspacing="0" cellpadding="0">
+							<tbody>
+								<tr>
+									<td class="cmtContentTd">
+										<div class="cmtContent textLogin">
+											<textarea id="cmtComment" name="COMMENT"
+												class="notice textareaIME" maxlength='300' rows="3" tabindex="99"></textarea>
+										</div>
+										<div id="cmtUploadImgBot_1582090283"></div>
+									</td>
+									<td class="cmtBttnTd" style="vertical-align: bottom;">
+										<div class="cmtSubmit">
+											<input type="button" id="btnCmt" class="" value="전송"
+												tabindex="100" alt="코멘트 등록">
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End 댓글  -->
 	</div>
 </div>
 
@@ -89,6 +126,159 @@
 	</div>
 </div>
 
+<%-- <div class="userInfo">
+
+	<input type="hidden" id="replyUser" value="<sec:authentication property="principal.membe.userName"/>">
+	
+	
+</div> --%>
+
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+
+
+<script type="text/javascript">
+	//시큐리티 csrf토큰생성
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
+	//Ajax spring security header....
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});
+
+	//게시글가져오기
+	$(document)
+			.ready(
+					function() {
+
+						var idValue = '<c:out value="${detail.id}"/>';
+						var replyUL = $(".chat");
+						
+						var replyer = null;
+						
+						//로그인되어있을경우 유저이름 가져오기
+						<sec:authorize access="isAuthenticated()">
+							replyer =	"<sec:authentication property='principal.username'/>"; 
+						</sec:authorize>
+
+						showList(1);
+
+						function showList(page) {
+							
+							//댓글가져오기
+							replyService
+									.getList(
+											{
+												id : idValue,
+												page : page
+											},
+											function(list) {
+												var str = "";
+
+												if (list == null
+														|| list.length == 0) {
+													replyUL.html("");
+
+													return;
+												}
+												for (var i = 0, len = list.length || 0; i < len; i++) {
+													str += "<li class='list-group-item' data-rno='"+list[i].rno+"'>";
+													str += "<div><div class='header'><strong class='primary-font'>"
+															+ list[i].replyer
+															+ "</strong>";
+													str += "<small class='text-right'>"
+															+replyService.displayTime(list[i].replyDate)
+															+ "</small></div>";
+													
+						
+													str += "<p class='cmtText'>" + list[i].reply + "</p></div>" ; 
+												
+													//권한이 있을경우 삭제 수정 뜨도록		
+													<sec:authorize access="isAuthenticated()"> 
+														if(replyer === list[i].replyer){
+															str += " <button id='btnCmtRemove'>삭제</button ><button id='btnCmtUpdate'>수정</button></li>";
+														}
+													</sec:authorize>
+													
+													str += "</li>";
+
+												}
+												
+												replyUL.html(str);
+											}); //End Function
+							
+
+						}// End ShowList
+						
+						//댓글 입력
+						$("#btnCmt").on("click",function(e){
+							var replyTBL =$(".replyTable");
+							
+							var inputReply = replyTBL.find("textarea[name='COMMENT']");
+							
+							var reply = {
+									reply : inputReply.val(),
+									replyer : replyer,
+									id : idValue
+							};
+							replyService.add(reply,function(result){
+								alert(result);
+								
+								showList(1);
+							});
+							
+						});//End 댓글입력
+						
+						
+						//댓글 삭제 버튼입력시 동적으로 생성된 버튼이라 이렇게 사용하여야함
+						$(document).on("click","#btnCmtRemove",function(){ 
+							var rno = $(this).parents("li").attr('data-rno')
+							
+							
+							 replyService.remove(rno,function(result){
+								alert(result);
+								
+								showList(1);
+							
+							});
+						});//End 댓글 삭제
+						
+						//댓글 업데이트 버튼입력시 동적으로 생성된 버튼이라 이렇게 사용하여야함
+						$(document).on("click","#btnCmtUpdate",function(){ 
+							
+							var replyTBL =$(this).prevAll("div").children(".cmtText");
+							
+							replyTBL.html("<input type='text' maxlength='300'> <button id='btnCmtUpdateOK'>수정완료</button>");
+							//console.log("길이"+replyText.length);
+						});//End 댓글 업데이트 
+						
+						
+						
+						//댓글 업데이트
+						$(document).on("click","#btnCmtUpdateOK",function(){ 
+							
+							var rno = $(this).parents("li").attr('data-rno')
+							
+							var reply = {
+									 rno : rno,
+									 id : idValue,
+									 reply : $(this).prev().val()
+							};
+							replyService.update(reply,function(result){
+								alert(result);
+								
+								showList(1);
+							});
+							
+						});//End 댓글 업데이트
+						
+						
+					});//End ready
+	
+	
+	
+</script>
+
 <script type="text/javascript">
 	//모달처리
 	$(document).ready(function() {
@@ -109,7 +299,7 @@
 		}
 	});
 
-	//submit처리
+	//목록,업데이트,삭제 submit처리
 	$(document)
 			.ready(
 					function() {
@@ -134,9 +324,9 @@
 												formObj.attr("action",
 														"/board/modify");
 											} else if (operation === 'list') {//목록페이지로 이동시 원래 페이지로 이동 파라미터 전달
-												self.location = "/board/<c:out value='${detail.type}' />?"+
-													"PageNum=<c:out value="${cri.pageNum}" />&amount=<c:out value="${cri.amount}" />"+
-													"&type=<c:out value="${cri.type}" />&keyword=<c:out value="${cri.keyword}" />";
+												self.location = "/board/<c:out value='${detail.type}' />?"
+														+ "PageNum=<c:out value="${cri.pageNum}" />&amount=<c:out value="${cri.amount}" />"
+														+ "&type=<c:out value="${cri.type}" />&keyword=<c:out value="${cri.keyword}" />";
 												return;
 											}
 											formObj.submit();
