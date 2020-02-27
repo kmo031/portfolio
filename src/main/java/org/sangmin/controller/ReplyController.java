@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sangmin.domain.Criteria;
 import org.sangmin.domain.ReplyDTO;
+import org.sangmin.domain.ReplyPageDTO;
 import org.sangmin.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,7 +48,7 @@ public class ReplyController {
 	// 특정 게시물의 댓글 목록 가져오기
 	@GetMapping(value = "/pages/{id}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<List<ReplyDTO>> getList(@PathVariable("page") int page, @PathVariable("id") int id) {
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("id") int id) {
 		log.info("특정 게시물 댓글목록 가져오기");
 
 		Criteria cri = new Criteria(page, 10);

@@ -19,5 +19,7 @@ public interface ReplyMapper {
 	public List<ReplyDTO> getListWithPaging(
 			@Param("cri") Criteria cri,
 			@Param("id") int id);
+	
+	public int getCountById(int id);
 
 }

@@ -60,7 +60,7 @@
 		</div>
 		<!-- 게시판 End  -->
 		<!-- 댓글  -->
-		<div class="card col-md-12">
+		<div class="card col-md-12" style="padding: 0px;">
 			<div class="card-header">댓글</div>
 			<div class="card-body">
 				<ul class="chat list-group">
@@ -71,21 +71,22 @@
 					</li>
 				</ul>
 				<div class="card-footer ">
+					<div class="cmtPage"></div>
 					<div class="cmtWriteForm">
 						<table class="replyTable" cellspacing="0" cellpadding="0">
 							<tbody>
 								<tr>
-									<td class="cmtContentTd">
-										<div class="cmtContent textLogin">
+									<td class="cmtContentTd ">
+										<div class="cmtContent textLogin ">
 											<textarea id="cmtComment" name="COMMENT"
-												class="notice textareaIME" maxlength='300' rows="3" tabindex="99"></textarea>
+												class="form-control cmtText" maxlength='300' rows="3" cols="120"
+												tabindex="1" ></textarea>
 										</div>
-										<div id="cmtUploadImgBot_1582090283"></div>
 									</td>
-									<td class="cmtBttnTd" style="vertical-align: bottom;">
+									<td class="cmtBttnTd" style="vertical-align: bottom; display: table-cell;">
 										<div class="cmtSubmit">
-											<input type="button" id="btnCmt" class="" value="전송"
-												tabindex="100" alt="코멘트 등록">
+											<input type="button" id="btnCmt" class="cmtSubmit" value="전송"
+												tabindex="2" alt="코멘트 등록">
 										</div>
 									</td>
 								</tr>
@@ -158,21 +159,31 @@
 						
 						//로그인되어있을경우 유저이름 가져오기
 						<sec:authorize access="isAuthenticated()">
-							replyer =	"<sec:authentication property='principal.username'/>"; 
+							replyer = "<sec:authentication property='principal.username'/>";  
 						</sec:authorize>
 
 						showList(1);
 
 						function showList(page) {
 							
-							//댓글가져오기
+							console.log("show List " + page);
+							
+							
+							//댓글가져오기 
 							replyService
 									.getList(
 											{
 												id : idValue,
-												page : page
+												page : page || 1
 											},
-											function(list) {
+											function(replyCnt, list) {
+												
+												if(page == -1){
+													pageNum = Math.ceil(replyCnt/10.0);
+													showList(pageNum);
+													return;
+												}
+												
 												var str = "";
 
 												if (list == null
@@ -205,16 +216,80 @@
 												}
 												
 												replyUL.html(str);
+												showReplyPage(replyCnt);
 											}); //End Function
 							
 
 						}// End ShowList
+						
+				//댓글 페이지 처리
+						//페이지 출력
+						var pageNum = 1;
+						var replyPage = $(".cmtPage");
+						
+						function showReplyPage(replyCnt){
+							var endNum = Math.ceil(pageNum / 5.0) * 5;
+							var startNum = endNum - 4;
+							var prev = startNum != 1;
+							var next = false;
+							
+							if(endNum * 10 >= replyCnt){
+								endNum = Math.ceil(replyCnt/10.0);
+							}
+							
+							if(endNum * 10 < replyCnt){
+								next = true;
+							}
+							
+							var str = "<ul class='pagination justify-content-center'>";
+							
+							if(prev){
+								str += "<li class='page-item'><a class='page-link' href='"
+								+ (startNum -1) +"'>이전</a></li>";
+							}
+							
+							for(var i = startNum ; i <= endNum; i++){
+								var active = pageNum == i? "active" : "";
+								
+								str += "<li class='page-item" + active + " '> <a class='page-link' href ='"
+								+ i + "'>" + i + "</a></li>";
+								
+							}
+							if(next){
+								str += "<li class='page-item'><a class='page-link' href='"
+								+(endNum + 1 ) + "'>다음</a></li>";
+							}						
+							str += "</ul></div>";
+							
+							replyPage.html(str);
+							
+						}
+						
+						//댓글 페이지 이동 처리 
+						replyPage.on("click", "li a", function(e){
+							
+							e.preventDefault();
+							console.log("page click");
+							
+							var targetPageNum = $(this).attr("href");
+							
+							pageNum = targetPageNum;
+							
+							showList(pageNum);
+						});
+						
 						
 						//댓글 입력
 						$("#btnCmt").on("click",function(e){
 							var replyTBL =$(".replyTable");
 							
 							var inputReply = replyTBL.find("textarea[name='COMMENT']");
+							
+							if(inputReply.val().length === 00 || inputReply.val().trim() === ""){
+								inputReply.focus();
+								alert("댓글을 입력하여주세요");
+								return;
+							} 
 							
 							var reply = {
 									reply : inputReply.val(),
@@ -223,7 +298,7 @@
 							};
 							replyService.add(reply,function(result){
 								alert(result);
-								
+								inputReply.val("");
 								showList(1);
 							});
 							
@@ -238,7 +313,7 @@
 							 replyService.remove(rno,function(result){
 								alert(result);
 								
-								showList(1);
+								showList(pageNum);
 							
 							});
 						});//End 댓글 삭제
@@ -267,10 +342,23 @@
 							replyService.update(reply,function(result){
 								alert(result);
 								
-								showList(1);
+								showList(pageNum);
 							});
 							
 						});//End 댓글 업데이트
+						
+						
+						
+						$(function(){
+							  var cmtStatus = $('.cmtText, .cmtSubmit');
+							  cmtStatus.focus(function(){
+								  
+								<sec:authorize access="isAnonymous()">
+									self.location = "/login";
+									return;
+								</sec:authorize>
+							  });
+							});
 						
 						
 					});//End ready

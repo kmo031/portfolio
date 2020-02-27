@@ -11,4 +11,6 @@ public interface MemberMapper {
 	public void registerUser(MemberDTO member);
 	
 	public void registerAuth(String userId);
+	
+	
 }

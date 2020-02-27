@@ -72,14 +72,22 @@ public class ReplyMapperTests {
 	 * log.info("업데이트 카운트" + count); }
 	 */
 	
-	@Test
-	public void testList() {
-		Criteria cri = new Criteria();
-		List<ReplyDTO> replies = reply.getListWithPaging(cri, 1099);
-		
-		replies.forEach(reply -> log.info(reply));
-	}
+	/*
+	 * @Test public void testList() { Criteria cri = new Criteria(); List<ReplyDTO>
+	 * replies = reply.getListWithPaging(cri, 1099);
+	 * 
+	 * replies.forEach(reply -> log.info(reply)); }
+	 */
 	/*
 	 * @Test public void testMapper() { log.info(reply); }
 	 */
+	
+	@Test
+	public void testList2() {
+		Criteria cri = new Criteria(1, 10);
+		
+		List<ReplyDTO> replies = reply.getListWithPaging(cri, 1382);
+		
+		replies.forEach(reply -> log.info(reply));
+	}
 }

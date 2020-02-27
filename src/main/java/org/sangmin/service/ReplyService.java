@@ -1,9 +1,8 @@
 package org.sangmin.service;
 
-import java.util.List;
-
 import org.sangmin.domain.Criteria;
 import org.sangmin.domain.ReplyDTO;
+import org.sangmin.domain.ReplyPageDTO;
 
 public interface ReplyService {
 
@@ -15,5 +14,5 @@ public interface ReplyService {
 	
 	public ReplyDTO get(int rno);
 	
-	public List<ReplyDTO> getList(Criteria cri, int id);
+	public ReplyPageDTO getList(Criteria cri, int id);
 }

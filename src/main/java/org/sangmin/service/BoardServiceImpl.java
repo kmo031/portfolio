@@ -42,6 +42,8 @@ public class BoardServiceImpl implements BoardService {
 		
 		log.info("게시글 가져오기 서비스 구현");
 		
+		boardMapper.plusHit(id);
+		
 		return boardMapper.read(id);
 	}
 

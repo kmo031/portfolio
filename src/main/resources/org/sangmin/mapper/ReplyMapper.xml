@@ -23,10 +23,25 @@
  </update>
  
  <select id="getListWithPaging" resultType="org.sangmin.domain.ReplyDTO">
- 	SELECT rno, id, reply, replyer, replyDate, updatedate
- 	FROM tbl_reply
- 	WHERE id= #{id}
- 	ORDER BY rno asc
+ 
+ <![CDATA[
+	 	SELECT  rno, id, reply, replyer, replyDate, updatedate
+		FROM
+		( 	SELECT /*+INDEX(tbl_reply idx_reply) */
+			 rownum rn, rno, id, reply, replyer, replyDate, updatedate
+		 	FROM tbl_reply
+		 	WHERE id= #{id}
+		 	AND rno > 0
+		 	AND rownum <= #{cri.pageNum} * #{cri.amount}
+	 	) where rn > (#{cri.pageNum} -1) * #{cri.amount}
+ 	]]>
+ </select>
+ 
+ <select id="getCountById" resultType="int">
+ 	<![CDATA[
+ 		SELECT count(id) from tbl_reply where id = #{id}
+ 	]]>
+ 	
  </select>
  
  </mapper>

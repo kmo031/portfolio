@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sangmin.domain.Criteria;
 import org.sangmin.domain.ReplyDTO;
+import org.sangmin.domain.ReplyPageDTO;
 import org.sangmin.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,8 +51,11 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	//댓글 페이지처리
 	@Override
-	public List<ReplyDTO> getList(Criteria cri, int id) {
-		return mapper.getListWithPaging(cri, id);
+	public ReplyPageDTO getList(Criteria cri, int id) {
+		
+		return new ReplyPageDTO(
+				mapper.getCountById(id),
+				mapper.getListWithPaging(cri, id));
 	}
 
 }

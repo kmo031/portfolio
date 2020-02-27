@@ -19,9 +19,9 @@
 	<!-- 게시판 페이지  -->
 	<select id="getListWithPaging" resultType="org.sangmin.domain.BoardDTO">
 		<![CDATA[
-			SELECT id, title, content, writer_Id, regdate, updatedate,type
+			SELECT id, title, content, writer_Id, regdate, updatedate,type, hit
 			from
-			(SELECT /*+ INDEX_DESC(tbl_board pk_board) */ rownum rn, id, title, content, writer_Id,regdate, type, updatedate
+			(SELECT /*+ INDEX_DESC(tbl_board pk_board) */ rownum rn, id, title, content, writer_Id,regdate, type, updatedate ,hit
 			FROM tbl_board WHERE ]]> 
 			<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 				<foreach item="type" collection="typeArr">
@@ -82,6 +82,11 @@
 		updateDate = sysdate
 		where id = #{id}
 	</update>
+	
+	<!-- 조회수 올리기  -->
+	<update id="plusHit">
+		UPDATE tbl_board SET hit = hit + 1 WHERE id = #{id} 
 
+	</update>
 
 </mapper>
