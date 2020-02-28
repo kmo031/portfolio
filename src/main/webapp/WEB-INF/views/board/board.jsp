@@ -21,7 +21,7 @@
 								<th style="width: 18%;">작성일</th>
 								<th style="width: 10%;">조회수</th> -->
 							<th>No</th>
-							<th style="width: 50%;">제목</th>
+							<th style="width: 25%;">제목</th>
 							<th>작성자</th>
 							<th style="width: 20%;">작성일</th>
 							<th>조회수</th>
@@ -33,7 +33,10 @@
 							<tr>
 								<td><c:out value="${board.id}" /></td>
 								<td><a class="move" href="<c:out value='${board.id}'/>"><c:out
-											value="${board.title}" /></a></td>
+											value="${board.title}" /></a>
+											<span>[<c:out
+											value="${board.replyCnt}" />]</span>
+											</td>
 								<td><c:out value="${board.writer_Id}" /></td>
 								<td><c:out value="${board.regdate}" /></td>
 								<td><c:out value="${board.hit}" /></td>

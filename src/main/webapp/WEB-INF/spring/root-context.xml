@@ -3,9 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- DB 정보 propertie 참조 -->
 	<context:property-placeholder location="classpath:/properties/jdbc.properties"/>
@@ -30,10 +34,13 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<tx:annotation-driven/>
+	
 	<mybatis-spring:scan base-package="org.sangmin.mapper"/>
 	
 	
 	<context:component-scan base-package="org.sangmin.service" />
 	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 </beans>

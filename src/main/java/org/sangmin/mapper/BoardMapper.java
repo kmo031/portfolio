@@ -2,6 +2,7 @@ package org.sangmin.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.sangmin.domain.BoardDTO;
 import org.sangmin.domain.Criteria;
 
@@ -24,6 +25,8 @@ public interface BoardMapper {
 	public int getTotalCount(Criteria cri);
 	
 	public int plusHit(int id); //게시글 조회수 올리기
+	
+	public void updateReplyCnt(@Param("id") int id, @Param("amount") int amount);
 	
 
 }

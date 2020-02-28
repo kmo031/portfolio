@@ -1,13 +1,13 @@
 package org.sangmin.service;
 
-import java.util.List;
-
 import org.sangmin.domain.Criteria;
 import org.sangmin.domain.ReplyDTO;
 import org.sangmin.domain.ReplyPageDTO;
+import org.sangmin.mapper.BoardMapper;
 import org.sangmin.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -19,12 +19,18 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	@Setter(onMethod_ = @Autowired )
 	private ReplyMapper mapper;
+	
+	@Setter(onMethod_ = @Autowired )
+	private BoardMapper boardMapper;
 
 	
 	//댓글 생성
+	@Transactional
 	@Override
 	public int register(ReplyDTO dto) {
-		// TODO Auto-generated method stub
+
+		boardMapper.updateReplyCnt(dto.getId(), 1); // 댓글 생성시 게시물의 댓글 카운트 상승
+		
 		return mapper.insert(dto);
 	}
 	
@@ -36,9 +42,14 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 	
 	//댓글삭제
+	@Transactional
 	@Override
 	public int remove(int rno) {
-		// TODO Auto-generated method stub
+		
+		ReplyDTO dto = mapper.read(rno);
+
+		boardMapper.updateReplyCnt(dto.getId(), -1); // 댓글 생성시 게시물의 댓글 카운트 다운
+		
 		return mapper.delete(rno);
 	}
 
