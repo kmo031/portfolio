@@ -19,7 +19,7 @@
 	<!-- 게시판 페이지  -->
 	<select id="getListWithPaging" resultType="org.sangmin.domain.BoardDTO">
 		<![CDATA[
-			SELECT id, title, content, writer_Id, regdate, updatedate,type, hit, replycnt
+			SELECT rownum rno, id, title, content, writer_Id, regdate, updatedate,type, hit, replycnt
 			from
 			(SELECT /*+ INDEX_DESC(tbl_board pk_board) */ rownum rn, id, title, content, writer_Id,regdate, type, updatedate ,hit, replycnt
 			FROM tbl_board WHERE ]]> 
@@ -42,14 +42,14 @@
 			</trim>
 			<![CDATA[
 			
-			 rownum <= #{pageNum} * #{amount})
+			 rownum <= #{pageNum} * #{amount } AND type = #{boardType})
 			where rn > (#{pageNum} -1) * #{amount} 
 			]]> 
 		
 	</select>
 	<!-- 게시글 전체 목록 가져오기  -->
 	<select id="getTotalCount" resultType="int">
-		SELECT count(*) FROM tbl_board WHERE id > 0 AND type='board'
+		SELECT count(*) FROM tbl_board WHERE id > 0 AND type = #{boardType}
 	</select>
 	
 	<!-- 게시글 상세내역 가져오기 -->

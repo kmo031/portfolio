@@ -16,6 +16,6 @@ public interface BoardService {
 	public boolean modify(BoardDTO board); //게시글 업데이트
 	public boolean remove(int id); //게시글 삭제
 	
-	public int getTotal(Criteria cri); //게시글 갯수 구하기
+	public int getTotal(Criteria cri ,String boardType); //게시글 갯수 구하기
 
 }

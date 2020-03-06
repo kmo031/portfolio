@@ -45,10 +45,17 @@
 												type="hidden" name="${_csrf.parameterName}"
 												value="${_csrf.token}">
 											<button class="btn btn-dark" type="submit" data-oper='list'>목록</button>
-											<button class="btn btn-dark" type="submit" data-oper='modify'>수정</button>
-											<button class="btn btn-dark" type="submit" data-oper='remove'>삭제</button>
-										</form>
+											<sec:authentication property="principal" var="pinfo" />
+											<sec:authorize access="isAuthenticated()">
+												<c:if test="${detail.writer_Id eq pinfo.username}">
+													<button class="btn btn-dark" type="submit" data-oper='modify'>수정</button>
+													<button class="btn btn-dark" type="submit" data-oper='remove'>삭제</button>
+												</c:if>
+											</sec:authorize>
 
+
+										</form>
+										
 									</div>
 
 								</div>
@@ -412,9 +419,10 @@
 												formObj.attr("action",
 														"/board/modify");
 											} else if (operation === 'list') {//목록페이지로 이동시 원래 페이지로 이동 파라미터 전달
-												self.location = "/board/<c:out value='${detail.type}' />?"
+												self.location = "/board/board?"
 														+ "PageNum=<c:out value="${cri.pageNum}" />&amount=<c:out value="${cri.amount}" />"
-														+ "&type=<c:out value="${cri.type}" />&keyword=<c:out value="${cri.keyword}" />";
+														+ "&type=<c:out value="${cri.type}" />&keyword=<c:out value="${cri.keyword}" />"
+														+ "&board=<c:out value="${boardType}"/> ";
 												return;
 											}
 											formObj.submit();

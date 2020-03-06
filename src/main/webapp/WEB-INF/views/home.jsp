@@ -14,30 +14,6 @@
 	</div>
 
 
-	<!-- <div class="row">
-			<div class="col-md-4">
-				<h4>코딩부스터의 특징</h4>
-				<p>코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징</p>
-				<p>
-					<a class="btn btn-dark" data-target="#modal1" data-toggle="modal">자세히보기</a>
-				</p>
-			</div>
-			<div class="col-md-4">
-				<h4>코딩부스터의 특징</h4>
-				<p>코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징</p>
-				<p>
-					<a class="btn btn-dark" data-target="#modal2" data-toggle="modal">자세히보기</a>
-				</p>
-			</div>
-			<div class="col-md-4">
-				<h4>코딩부스터의 특징</h4>
-				<p>코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징코딩 부스터의 특징</p>
-				<p>
-					<a class="btn btn-dark" data-target="#modal3" data-toggle="modal">자세히보기</a>
-				</p>
-			</div>
-		</div> -->
-
 	<!-- 테이블 정보 컨테이너  -->
 	<div class="container">
 		<div class="row">
@@ -49,7 +25,8 @@
 				<div class="card-body"> 
 					<c:forEach items="${Board}" var="board" begin="0" end="4">
 						<ul>
-							<li><span><a href="/board/detail?id=<c:out value='${board.id}'/>"><c:out
+							<li><span><a href="/board/detail?board=board
+							&id=<c:out value='${board.id}'/>"><c:out
 											value="${board.title }" /></a></span></li>
 						</ul>
 					</c:forEach>
@@ -58,15 +35,16 @@
 			<!-- 게시판 End  -->
 			<!-- 공지사항  -->
 
-			<div class="card col-md-6" style="padding: 0px;">
+			<div class="card col-md-6" style="padding: 0px;" >
 				<div class="card-header">
 					<h5 class="card-title">공지사항</h5>
 				</div>
 				<div class="card-body">
-					<c:forEach items="${Notice}" var="notice">
+					<c:forEach items="${Notice}" var="notice" begin="0" end="4">
 						<ul>
-							<li><span><a href="/board/detail?id=<c:out value='${notice.id}'/>"><c:out
-											value="${notice.title }" /></a></span></li>
+							<li><span><a href="/board/detail?board=notice
+							&id=<c:out value='${notice.id}'/>"><c:out
+							value="${notice.title }" /></a></span></li>
 						</ul>
 					</c:forEach>
 				</div>

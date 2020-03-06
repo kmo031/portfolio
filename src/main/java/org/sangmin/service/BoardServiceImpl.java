@@ -42,7 +42,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		log.info("게시글 가져오기 서비스 구현");
 		
-		boardMapper.plusHit(id);
+		boardMapper.plusHit(id); //게시글 상세가져올 시 조회수 상승
 		
 		return boardMapper.read(id);
 	}
@@ -77,9 +77,9 @@ public class BoardServiceImpl implements BoardService {
 
 	//게시글 갯수 구하기
 	@Override
-	public int getTotal(Criteria cri) {
+	public int getTotal(Criteria cri, String boardType) {
 		log.info("게시글 갯수 구하기 service 구현");
-		return boardMapper.getTotalCount(cri);
+		return boardMapper.getTotalCount(cri , boardType);
 	}
 
 }

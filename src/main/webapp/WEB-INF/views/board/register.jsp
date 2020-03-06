@@ -27,8 +27,10 @@
 							<button class="btn btn-outline-info" id="save" type="submit" >작성</button>
 					</div>		
 				</fieldset>
-				<input type="hidden" name="type" value="board">
-				<input type="hidden" name="writer_Id" value="sangmin">
+				<input type="hidden" name="type" value="${type}">
+				<sec:authorize access="isAuthenticated()">
+					<input type="hidden" name="writer_Id" value="<sec:authentication property='principal.username'/>">
+				</sec:authorize>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</form>
 		</div>

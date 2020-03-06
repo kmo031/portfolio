@@ -10,6 +10,7 @@ public class Criteria {
 	
 	private String type; //검색조건 타입
 	private String keyword; //검색어
+	private String boardType; //게시판 종류
 	
 	
 	public Criteria() {

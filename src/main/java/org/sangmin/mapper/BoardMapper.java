@@ -22,11 +22,12 @@ public interface BoardMapper {
 	
 	public int delete(int id); //게시글 삭제
 	
-	public int getTotalCount(Criteria cri);
+	public int getTotalCount(@Param("cri") Criteria cri,
+			@Param("boardType") String boardType);
 	
 	public int plusHit(int id); //게시글 조회수 올리기
 	
-	public void updateReplyCnt(@Param("id") int id, @Param("amount") int amount);
+	public void updateReplyCnt(@Param("id") int id, @Param("amount") int amount); //게시글 댓글 총합
 	
 
 }

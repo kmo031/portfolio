@@ -8,7 +8,10 @@
 		<!-- 게시판  -->
 		<div class="card table-responsive">
 			<div class="card-header">
-				<h5 class="card-title">게시판</h5>
+				<h5 class="card-title">
+					<c:if test="${boardType eq 'board'}">게시판</c:if>
+					<c:if test="${boardType eq 'notice'}">공지사항</c:if>
+				</h5>
 			</div>
 			<div class="card-body ">
 				<table class="table table-dark table-striped table-hover"
@@ -31,12 +34,11 @@
 					<tbody>
 						<c:forEach items="${board}" var="board">
 							<tr>
-								<td><c:out value="${board.id}" /></td>
+								<td><c:out value="${board.rno + ((pageMaker.cri.pageNum -1) * pageMaker.cri.amount) }" /></td>
 								<td><a class="move" href="<c:out value='${board.id}'/>"><c:out
-											value="${board.title}" /></a>
-											<span>[<c:out
-											value="${board.replyCnt}" />]</span>
-											</td>
+											value="${board.title}" /></a> <span><b>[<c:out
+												value="${board.replyCnt}" />]
+									</b></span></td>
 								<td><c:out value="${board.writer_Id}" /></td>
 								<td><c:out value="${board.regdate}" /></td>
 								<td><c:out value="${board.hit}" /></td>
@@ -86,6 +88,8 @@
 												value="<c:out value='${pageMaker.cri.pageNum}' />">
 											<input type="hidden" name="amount"
 												value="<c:out value='${pageMaker.cri.amount}' />">
+											<input type="hidden" name="board"
+												value="<c:out value='${boardType}' />">
 											<button type="submit">
 												<i class="fa fa-search"></i>
 											</button>
@@ -93,7 +97,11 @@
 									</div>
 									<!-- 검색 End  -->
 									<div class="detailContent" style="text-align: right;">
-										<a class="btn btn-dark" href="/board/register">글쓰기</a>
+										<form action="#" method="post">
+											<input type="hidden" name="type"
+												value="<c:out value="${boardType }"/>"> 
+											<button class="btn btn-dark" type="submit" data-oper='register'>글쓰기</button>
+										</form>
 									</div>
 								</div>
 							</td>
@@ -110,14 +118,14 @@
 <!-- 페이지 번호 폼  -->
 <form id="actionForm" action="/board/board" method="get">
 	<input type="hidden" name="pageNum"
-		value="<c:out value='${pageMaker.cri.pageNum}' />">
-	<input
+		value="<c:out value='${pageMaker.cri.pageNum}' />"> <input
 		type="hidden" name="amount"
-		value="<c:out value='${pageMaker.cri.amount}' />">
-	<input type="hidden" name="type"
-		value="<c:out value='${pageMaker.cri.type}' />">
-	<input type="hidden" name="keyword"
-		value="<c:out value='${pageMaker.cri.keyword}' />">
+		value="<c:out value='${pageMaker.cri.amount}' />"> <input
+		type="hidden" name="type"
+		value="<c:out value='${pageMaker.cri.type}' />"> <input
+		type="hidden" name="keyword"
+		value="<c:out value='${pageMaker.cri.keyword}' />"> <input
+		type="hidden" name="board" value="<c:out value='${boardType}' />">
 </form>
 
 
@@ -188,7 +196,6 @@
 
 											e.preventDefault();
 
-											//actionForm.append("<input type='hidden' name='id' value='" + $(this).attr('href') +"'>");
 											actionForm
 													.append("<input type='hidden' name='id' value='"
 															+ $(this).attr(
@@ -225,7 +232,32 @@
 
 									searchForm.submit();
 								});
-					});
+						
+						
+						//End 글쓰기
+						var formObj = $("form");
+
+						$('form > button')
+								.on(
+										"click",
+										function(e) {
+											e.preventDefault();
+											var operation = $(this)
+													.data("oper");
+
+											console.log(operation);
+
+											if (operation === 'register') {
+												formObj.attr("method", "get");
+											
+												formObj.attr("action",
+														"/board/register");
+											}
+												
+										
+											formObj.submit();
+										});// End 글쓰기 버튼입력
+					}); //End function
 </script>
 
 
