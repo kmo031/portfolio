@@ -22,6 +22,21 @@
  	<security:logout logout-url="/logout" invalidate-session="true" logout-success-url="/" delete-cookies="remember-me,JSESSIONID"/>
  	<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
 	
+	<!-- 중복 로그인 방지 
+	- invalid-session-url="/login" : 세션이 끊겼을때 이동 할 페이지 입니다.
+	- max-sessions="1" : 최대 허용 가능 중복 세션 수 입니다.
+	- expired-url="/login" :  중복 로그인이 일어났을 경우 이동 할 페이지 입니다.
+	-->
+	<!-- <security:session-management invalid-session-url="/login">
+		<security:concurrency-control max-sessions="1" expired-url="/login"/>
+		<security:concurrency-control max-sessions="1" expired-url="/login" error-if-maximum-exceeded="true" />
+	</security:session-management> -->
+	
+
+
+
+
+	
 	<!-- iframe 사용 허용  -->
 	<security:headers>
 		<security:frame-options policy="SAMEORIGIN"/>
@@ -29,24 +44,6 @@
 </security:http>
 
 
-<!-- <security:authentication-manager>
-	<security:authentication-provider>
-		<security:user-service>
-			<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
-			<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER,ROLE_ADMIN"/>
-		</security:user-service>
-	</security:authentication-provider>
-
-</security:authentication-manager> -->
-
-<!-- <security:authentication-manager>
-	<security:authentication-provider>
-		<security:jdbc-user-service data-source-ref="dataSource"
-		 users-by-username-query="select userid, userpw,enabled from tbl_member where userid = ?"
-		  authorities-by-username-query="select userid, auth from tbl_auth where userid = ?" />
-		 <security:password-encoder ref="bcryptPasswordEncoder" /> 
-	</security:authentication-provider>
-</security:authentication-manager> -->
 
 <security:authentication-manager>
 	<security:authentication-provider user-service-ref="customUserDetailsService">

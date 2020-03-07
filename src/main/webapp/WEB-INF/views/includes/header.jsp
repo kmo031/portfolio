@@ -48,7 +48,7 @@
 						<li class="nav-item"><a class="nav-link" href="/board/board?board=board">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="/board/skill">사용
 								툴 및 기술</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">채팅</a></li>
+						<li class="nav-item"><a class="nav-link" href="/chat">채팅</a></li>
 						<!-- Dropdown -->
 						<!-- <li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbardrop"

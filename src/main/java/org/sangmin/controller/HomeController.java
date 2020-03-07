@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.sangmin.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')")
+	@RequestMapping(value = "/chat", method = RequestMethod.GET)
+	public void chat(Locale locale, Model model) {
+
+	}
 	
 	
 }

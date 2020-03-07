@@ -4,23 +4,7 @@
 <%@include file="./includes/header.jsp"%>
 <style type="text/css">
 
-/* html,body{
-background-image: url('/resources/images/banner.jpg');
-background-size: cover;
-background-repeat: no-repeat;
-max-width: 100%; 
-height: 100%;
-max-height: 100%;
 
-}
-
-.container{
-height: 80%; 
-align-content: center;
-} */
-html, body {
-	
-}
 
 .back-image {
 	align-content: center;
