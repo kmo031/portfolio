@@ -41,20 +41,20 @@
 
 
 
-<!-- 	<beans:bean id="echoHandler" class="org.sangmin.service.EchoHandler" />
+	<beans:bean id="echoHandler" class="org.sangmin.service.EchoHandler" />
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler" path="/chat" />
 		<websocket:handshake-interceptors>
 			<beans:bean class="org.sangmin.service.HandshakeInterceptor" />
 		</websocket:handshake-interceptors>
 		<websocket:sockjs />
-	</websocket:handlers> -->
+	</websocket:handlers> 
 	
-	 <beans:bean id="echoHandler" class="org.sangmin.service.EchoHandler" />
+	 <!-- <beans:bean id="echoHandler" class="org.sangmin.service.EchoHandler" />
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler" path="/chat" />
 		<websocket:sockjs />
-	</websocket:handlers> 
+	</websocket:handlers>  -->
 
 
 </beans:beans>
